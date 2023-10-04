@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "MVIKotlin-IntelliJ-Plugin"
 
 include(":plugin")
+include(":core")
