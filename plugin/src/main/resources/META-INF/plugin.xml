@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
-    <id>com.example.demo</id>
+    <id>com.makeevrserg.mvikotlin.intellij.plugin</id>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
@@ -27,4 +27,25 @@
     <extensions defaultExtensionNs="com.intellij">
 
     </extensions>
+    <actions>
+
+        <group id="JetpackComposeUIGroup" text="Group">
+            <add-to-group group-id="NewGroup" anchor="first"/>
+
+            <group id="JetpackComposeUi.NewMenu.Arch"
+                   popup="true"
+                   icon="/icons/decompose.svg"
+                   text="Decompose menu"
+                   description="Decompose menu">
+                <action
+                        id="ComposeArch.New"
+                        text="New Component"
+                        icon="/icons/decompose.svg"
+                        description="Creates new decompose component"
+                        class="com.makeevrserg.mvikotlin.intellij.component.ComponentAction"/>
+            </group>
+
+        </group>
+
+    </actions>
 </idea-plugin>

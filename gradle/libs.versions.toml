@@ -1,9 +1,11 @@
 [versions]
 # Kotlin
 kotlin-version = "1.9.0"
+kotlin-coroutines = "1.6.4"
 
 [libraries]
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-version" }
+kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlin-coroutines" }
 
 [plugins]
 # Kotlin

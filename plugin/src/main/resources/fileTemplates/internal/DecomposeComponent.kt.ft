@@ -1,0 +1,9 @@
+package ${PACKAGE_NAME}
+
+import kotlinx.coroutines.flow.StateFlow
+
+interface ${NAME}Component {
+    val model: StateFlow<Model>
+
+    object Model
+}

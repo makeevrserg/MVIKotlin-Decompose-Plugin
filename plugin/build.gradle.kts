@@ -6,6 +6,10 @@ plugins {
 repositories {
     mavenCentral()
 }
+dependencies {
+    implementation(libs.kotlin.coroutines.swing)
+    implementation(project(":core"))
+}
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
