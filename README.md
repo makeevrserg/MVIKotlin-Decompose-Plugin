@@ -16,6 +16,6 @@ Right clicking on package will show additional dialog, with which you will be ab
 
 ### Gratitude
 
-- [jetpack-compose-ui-arch-plugin](https://github.com/levinzonr/jetpack-compose-ui-arch-plugin) for idea
+- [jetpack-compose-ui-arch-plugin](https://github.com/levinzonr/jetpack-compose-ui-arch-plugin) for inspiration
 - [arkivanov](https://github.com/arkivanov) for great libraries
 - [jetbrains](https://jetbrains.com) for IntelliJ 
