@@ -9,10 +9,6 @@ Right clicking on package will show additional dialog, with which you will be ab
 
 ![](/assets/sample.png)
 
-<iframe width="384px" height="319px" src="https://plugins.jetbrains.com/embeddable/card/22852"></iframe>
-
-<iframe width="245px" height="48px" src="https://plugins.jetbrains.com/embeddable/install/22852"></iframe>
-
 ### Gratitude
 
 - [jetpack-compose-ui-arch-plugin](https://github.com/levinzonr/jetpack-compose-ui-arch-plugin) for idea
