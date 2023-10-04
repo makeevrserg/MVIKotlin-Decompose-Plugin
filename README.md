@@ -9,6 +9,11 @@ Right clicking on package will show additional dialog, with which you will be ab
 
 ![](/assets/sample.png)
 
+### See libraries
+
+- [Decompose](https://github.com/arkivanov/Decompose)
+- [MVIKotlin](https://github.com/arkivanov/MVIKotlin)
+
 ### Gratitude
 
 - [jetpack-compose-ui-arch-plugin](https://github.com/levinzonr/jetpack-compose-ui-arch-plugin) for idea
