@@ -22,7 +22,7 @@ class ComponentDialog(
         return panel {
             row { label("New Decompose Component") }
             row { textField().focused().bindText(viewModel::name).horizontalAlign(HorizontalAlign.FILL) }
-            row { comment("Creates a new Composable Component and its Preview based on the name given") }
+            row { comment("Creates a new Decompose Component and it's default implementation") }
         }
     }
 

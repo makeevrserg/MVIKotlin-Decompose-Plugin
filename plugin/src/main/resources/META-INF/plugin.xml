@@ -5,18 +5,15 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Demo</name>
+    <name>MVIKotlin Decompose Template</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="makeevrserg@gmail.com" url="https://github.com/makeevrserg">makeevrserg</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
-  ]]></description>
+    <description>Decompose and MVIKotlin plugin template, which will help you to create new components</description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
@@ -29,16 +26,16 @@
     </extensions>
     <actions>
 
-        <group id="JetpackComposeUIGroup" text="Group">
+        <group id="DecomposeGroup" text="Group">
             <add-to-group group-id="NewGroup" anchor="first"/>
 
-            <group id="JetpackComposeUi.NewMenu.Arch"
+            <group id="Decompose.NewComponent"
                    popup="true"
                    icon="/icons/decompose.svg"
-                   text="Decompose menu"
-                   description="Decompose menu">
+                   text="Decompose Menu"
+                   description="Create new decompose components">
                 <action
-                        id="ComposeArch.New"
+                        id="DecomposeComponent.New"
                         text="New Component"
                         icon="/icons/decompose.svg"
                         description="Creates new decompose component"
