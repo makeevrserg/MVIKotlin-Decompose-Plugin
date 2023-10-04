@@ -1,6 +1,8 @@
 package ${PACKAGE_NAME}
 
+import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
+import com.arkivanov.mvikotlin.core.store.StoreFactory
 import ${PACKAGE_NAME}.${NAME}Store.Intent
 import ${PACKAGE_NAME}.${NAME}Store.Action
 import ${PACKAGE_NAME}.${NAME}Store.Label
@@ -19,6 +21,7 @@ class ${NAME}StoreFactory(private val storeFactory: StoreFactory) : Factory<${NA
         Store<Intent, State, Label> by storeFactory.create(
             name = "${NAME}Store",
             initialState = ${NAME}Store.State,
+            bootstrapper = ${NAME}Bootstrapper(),
             executorFactory = { ${NAME}Executor() },
             reducer = ${NAME}Reducer
         )

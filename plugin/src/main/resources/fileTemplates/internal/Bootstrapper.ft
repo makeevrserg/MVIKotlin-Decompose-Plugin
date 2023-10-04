@@ -1,0 +1,10 @@
+package ${PACKAGE_NAME}
+
+import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
+import ${PACKAGE_NAME}.${NAME}Store.Action
+
+class ${NAME}Bootstrapper : CoroutineBootstrapper<Action>() {
+    override fun invoke() {
+        TODO("Not yet implemented")
+    }
+}

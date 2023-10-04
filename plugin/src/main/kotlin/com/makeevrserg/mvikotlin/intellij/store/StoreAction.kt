@@ -8,7 +8,6 @@ import com.makeevrserg.mvikotlin.intellij.dependencies.ProjectDependencies
 
 class StoreAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-        val deps = ProjectDependencies(e.project)
         val directory = e.getData(CommonDataKeys.PSI_ELEMENT) as PsiDirectory
         val viewModel = StoreViewModel(directory, ProjectDependencies(e.project))
         StoreDialog(viewModel).show()

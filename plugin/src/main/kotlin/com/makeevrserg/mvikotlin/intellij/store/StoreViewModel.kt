@@ -51,6 +51,7 @@ class StoreViewModel(
         )
         projectDependencies.editor.openFile(fileApi.virtualFile, true)
     }
+
     private fun createStoreStoreFactory() {
         val name = "$name"
         val properties: MutableMap<String, Any> = mutableMapOf(PropertyKeys.Name to name)
@@ -63,11 +64,24 @@ class StoreViewModel(
         projectDependencies.editor.openFile(fileApi.virtualFile, true)
     }
 
+    private fun createStoreBootstrapper() {
+        val name = "$name"
+        val properties: MutableMap<String, Any> = mutableMapOf(PropertyKeys.Name to name)
+        val fileApi = projectDependencies.generator.generateKt(
+            "Bootstrapper",
+            "${name}Bootstrapper",
+            directory,
+            properties
+        )
+        projectDependencies.editor.openFile(fileApi.virtualFile, true)
+    }
+
     fun onOkButtonClick() {
         createStoreInterface()
         createStoreReducer()
         createStoreExecutor()
         createStoreStoreFactory()
+        createStoreBootstrapper()
         scope.launch { successFlow.emit(Unit) }
     }
 }
