@@ -40,6 +40,12 @@
                         icon="/icons/decompose.svg"
                         description="Creates new decompose component"
                         class="com.makeevrserg.mvikotlin.intellij.component.ComponentAction"/>
+                <action
+                        id="Store.New"
+                        text="New Store"
+                        icon="/icons/mvikotlin.svg"
+                        description="Creates new MVI store"
+                        class="com.makeevrserg.mvikotlin.intellij.store.StoreAction"/>
             </group>
 
         </group>

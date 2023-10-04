@@ -1,0 +1,13 @@
+package ${PACKAGE_NAME}
+
+import com.arkivanov.mvikotlin.core.store.Reducer
+import ${PACKAGE_NAME}.${NAME}Store.State
+import ${PACKAGE_NAME}.${NAME}Store.Message
+
+object ${NAME}Reducer : Reducer<State, Message> {
+    override fun State.reduce(msg: Message): State {
+        return when (msg) {
+            else -> TODO()
+        }
+    }
+}

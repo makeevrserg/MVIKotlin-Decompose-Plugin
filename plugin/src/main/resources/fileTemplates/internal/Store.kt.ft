@@ -1,0 +1,18 @@
+package ${PACKAGE_NAME}
+
+import com.arkivanov.mvikotlin.core.store.Store
+import ${PACKAGE_NAME}.${NAME}Store.Intent
+import ${PACKAGE_NAME}.${NAME}Store.Label
+import ${PACKAGE_NAME}.${NAME}Store.State
+
+interface ${NAME}Store : Store<Intent, State, Label> {
+    object State
+
+    sealed interface Intent
+
+    sealed interface Message
+
+    sealed interface Label
+
+    sealed interface Action
+}

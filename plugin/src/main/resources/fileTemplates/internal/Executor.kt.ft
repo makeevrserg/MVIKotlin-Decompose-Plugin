@@ -1,0 +1,16 @@
+package ${PACKAGE_NAME}
+
+import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
+import ${PACKAGE_NAME}.${NAME}Store.Intent
+import ${PACKAGE_NAME}.${NAME}Store.Action
+import ${PACKAGE_NAME}.${NAME}Store.Label
+import ${PACKAGE_NAME}.${NAME}Store.State
+import ${PACKAGE_NAME}.${NAME}Store.Message
+
+class ${NAME}Executor : CoroutineExecutor<Intent, Action, State, Message, Label>() {
+    override fun executeIntent(intent: Intent, getState: () -> State) {
+        when (intent) {
+            else -> TODO()
+        }
+    }
+}

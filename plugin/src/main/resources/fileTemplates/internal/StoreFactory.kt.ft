@@ -1,0 +1,25 @@
+package ${PACKAGE_NAME}
+
+import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
+import ${PACKAGE_NAME}.${NAME}Store.Intent
+import ${PACKAGE_NAME}.${NAME}Store.Action
+import ${PACKAGE_NAME}.${NAME}Store.Label
+import ${PACKAGE_NAME}.${NAME}Store.State
+import ${PACKAGE_NAME}.${NAME}Store.Message
+import ru.astrainteractive.klibs.kdi.Factory
+
+class ${NAME}StoreFactory(private val storeFactory: StoreFactory) : Factory<${NAME}Store> {
+
+    override fun create(): ${NAME}Store {
+        return ${NAME}StoreImpl()
+    }
+
+    private inner class ${NAME}StoreImpl :
+        ${NAME}Store,
+        Store<Intent, State, Label> by storeFactory.create(
+            name = "${NAME}Store",
+            initialState = ${NAME}Store.State,
+            executorFactory = { ${NAME}Executor() },
+            reducer = ${NAME}Reducer
+        )
+}

@@ -4,8 +4,6 @@ import com.arkivanov.decompose.ComponentContext
 import kotlinx.coroutines.flow.StateFlow
 import ${PACKAGE_NAME}.${NAME}Component.Model
 
-class Default${NAME}Component(
-  componentContext: ComponentContext
-): ${NAME}Component, ComponentContext by componentContext {
+class Default${NAME}Component(componentContext: ComponentContext): ${NAME}Component, ComponentContext by componentContext {
     override val model: StateFlow<Model> = TODO()
 }
