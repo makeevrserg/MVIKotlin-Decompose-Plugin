@@ -53,7 +53,7 @@ This configuration will create following:
 <details>
   <summary><b>(Click to expand)</b> Decompose menu</summary>
     <div class="content">
-        <img src="./assets/decompose_menu.png"/>
+        <img src="./assets/decompose_menu.jpg"/>
     </div>
 </details>
 
@@ -76,7 +76,7 @@ This configuration will create following:
 <details>
   <summary><b>(Click to expand)</b> MVIKotlin menu</summary>
     <div class="content">
-        <img src="./assets/mvi_menu.png"/>
+        <img src="./assets/mvi_menu.jpg"/>
     </div>
 </details>
 
