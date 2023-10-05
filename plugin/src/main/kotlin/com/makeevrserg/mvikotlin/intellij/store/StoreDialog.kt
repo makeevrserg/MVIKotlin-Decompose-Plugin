@@ -35,6 +35,10 @@ class StoreDialog(
                     checkBox("Use klibs factory")
                         .bindSelected(viewModel.useKlibsStorageValue::value)
                 }
+                row {
+                    checkBox("Create store package")
+                        .bindSelected(viewModel.createPackageStorageValue::value)
+                }
             }
             buttonsGroup("Bootstrapper") {
                 row {

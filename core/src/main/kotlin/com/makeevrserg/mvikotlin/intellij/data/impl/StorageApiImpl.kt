@@ -15,6 +15,13 @@ class StorageApiImpl(private val propertiesComponent: PropertiesComponent) : Sto
             default = false
         )
     }
+    override val createStorePackageStorageValue: StorageValue<Boolean> by lazy {
+        BooleanStorageValue(
+            key = "CREATE_STORE_PACKAGE",
+            properties = propertiesComponent,
+            default = false
+        )
+    }
     override val decomposeMviIntegrationStorageValue: StorageValue<Boolean> by lazy {
         BooleanStorageValue(
             key = "DECOMPOSE_MVI_INTEGRATION",

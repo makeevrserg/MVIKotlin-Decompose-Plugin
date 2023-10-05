@@ -61,7 +61,8 @@ This configuration will create following:
 
 Here you can also make few configurations:
 
-- [x] Choose aBootstrapper type
+- [x] Option to create store package
+- [x] Choose a Bootstrapper type
 - [x] Option to use klibs.kdi Factory
 
 This configuration will create following:

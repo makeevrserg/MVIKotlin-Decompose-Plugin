@@ -14,6 +14,7 @@ class StoreViewModel(
     private val projectDependencies: ProjectDependencies
 ) : BaseViewModel() {
     val nameStorageValue = storageApi.createNameStorageValue()
+    val createPackageStorageValue = storageApi.createStorePackageStorageValue
     val useKlibsStorageValue = storageApi.useKlibsStorageValue
     val createBootstrapperStorageValue = storageApi.createBootstrapperStorageValue
 
@@ -25,11 +26,15 @@ class StoreViewModel(
             useKlibsStorageValue.asPair(),
             createBootstrapperStorageValue.asPair()
         )
+
+        val directory = directory.takeIf { !createPackageStorageValue.value } ?: let {
+            directory.findSubdirectory("store") ?: directory.createSubdirectory("store")
+        }
         val fileApi = projectDependencies.generator.generateKt(
-            name,
-            "${nameStorageValue.value}$name",
-            directory,
-            properties
+            templateName = name,
+            fileName = "${nameStorageValue.value}$name",
+            directory = directory,
+            properties = properties
         )
         projectDependencies.editor.openFile(fileApi.virtualFile, true)
     }
