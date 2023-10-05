@@ -8,11 +8,11 @@ import ${PACKAGE_NAME}.${NAME}Store.Action
 import ${PACKAGE_NAME}.${NAME}Store.Label
 import ${PACKAGE_NAME}.${NAME}Store.State
 import ${PACKAGE_NAME}.${NAME}Store.Message
-import ru.astrainteractive.klibs.kdi.Factory
+#if (${USE_KLIBS_FACTORY} == "true")import ru.astrainteractive.klibs.kdi.Factory#end
 
-class ${NAME}StoreFactory(private val storeFactory: StoreFactory) : Factory<${NAME}Store> {
+class ${NAME}StoreFactory(private val storeFactory: StoreFactory) #if (${USE_KLIBS_FACTORY} == "true") : Factory<${NAME}Store> #end{
 
-    override fun create(): ${NAME}Store {
+    #if (${USE_KLIBS_FACTORY} == "true") override#end fun create(): ${NAME}Store {
         return ${NAME}StoreImpl()
     }
 

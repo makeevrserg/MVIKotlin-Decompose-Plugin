@@ -1,6 +1,7 @@
 package com.makeevrserg.mvikotlin.intellij.store
 
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.ui.dsl.builder.bindSelected
 import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
@@ -21,8 +22,18 @@ class StoreDialog(
     override fun createPanel(): DialogPanel {
         return panel {
             row { label("New MVI store") }
-            row { textField().focused().bindText(viewModel::name).horizontalAlign(HorizontalAlign.FILL) }
+            row {
+                textField().focused().bindText(viewModel.nameStorageValue::value).horizontalAlign(
+                    HorizontalAlign.FILL
+                )
+            }
             row { comment("Creates a new MVI store with factory, reducer, executor") }
+            group("Options") {
+                row {
+                    checkBox("Use klibs factory")
+                        .bindSelected(viewModel.useKlibsStorageValue::value)
+                }
+            }
         }
     }
 
