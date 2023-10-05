@@ -21,7 +21,11 @@ class ComponentDialog(
     override fun createPanel(): DialogPanel {
         return panel {
             row { label("New Decompose Component") }
-            row { textField().focused().bindText(viewModel::name).horizontalAlign(HorizontalAlign.FILL) }
+            row {
+                textField().focused().bindText(viewModel.nameStorageValue::value).horizontalAlign(
+                    HorizontalAlign.FILL
+                )
+            }
             row { comment("Creates a new Decompose Component and it's default implementation") }
         }
     }

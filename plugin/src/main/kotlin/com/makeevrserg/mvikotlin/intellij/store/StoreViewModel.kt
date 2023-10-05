@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
 class StoreViewModel(
-    private val storageApi: StorageApi,
+    storageApi: StorageApi,
     private val directory: PsiDirectory,
     private val projectDependencies: ProjectDependencies
 ) : BaseViewModel() {
