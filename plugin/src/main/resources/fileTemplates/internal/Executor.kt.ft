@@ -2,15 +2,26 @@ package ${PACKAGE_NAME}
 
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import ${PACKAGE_NAME}.${NAME}Store.Intent
+#if (${CREATE_BOOTSTRAPPER} == "CUSTOM")
 import ${PACKAGE_NAME}.${NAME}Store.Action
+#end
 import ${PACKAGE_NAME}.${NAME}Store.Label
 import ${PACKAGE_NAME}.${NAME}Store.State
 import ${PACKAGE_NAME}.${NAME}Store.Message
 
-class ${NAME}Executor : CoroutineExecutor<Intent, Action, State, Message, Label>() {
+class ${NAME}Executor : CoroutineExecutor<Intent, #if (${CREATE_BOOTSTRAPPER} == "CUSTOM")Action#else Unit#end, State, Message, Label>() {
     override fun executeIntent(intent: Intent, getState: () -> State) {
         when (intent) {
             else -> TODO()
         }
     }
+    #if (${CREATE_BOOTSTRAPPER} == "CUSTOM")
+    override fun executeAction(action: Action, getState: () -> State) {
+        super.executeAction(action, getState)
+    }
+    #elseif (${CREATE_BOOTSTRAPPER} == "SIMPLE")
+    override fun executeAction(action: Unit, getState: () -> State) {
+        super.executeAction(action, getState)
+    }
+    #end
 }

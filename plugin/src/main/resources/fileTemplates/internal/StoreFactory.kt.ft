@@ -4,11 +4,18 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import ${PACKAGE_NAME}.${NAME}Store.Intent
+#if (${CREATE_BOOTSTRAPPER} == "CUSTOM")
 import ${PACKAGE_NAME}.${NAME}Store.Action
+#end
+#if (${CREATE_BOOTSTRAPPER} == "SIMPLE")
+import com.arkivanov.mvikotlin.core.store.SimpleBootstrapper
+#end
 import ${PACKAGE_NAME}.${NAME}Store.Label
 import ${PACKAGE_NAME}.${NAME}Store.State
 import ${PACKAGE_NAME}.${NAME}Store.Message
-#if (${USE_KLIBS_FACTORY} == "true")import ru.astrainteractive.klibs.kdi.Factory#end
+#if (${USE_KLIBS_FACTORY} == "true")
+import ru.astrainteractive.klibs.kdi.Factory
+#end
 
 class ${NAME}StoreFactory(private val storeFactory: StoreFactory) #if (${USE_KLIBS_FACTORY} == "true") : Factory<${NAME}Store> #end{
 
@@ -21,7 +28,11 @@ class ${NAME}StoreFactory(private val storeFactory: StoreFactory) #if (${USE_KLI
         Store<Intent, State, Label> by storeFactory.create(
             name = "${NAME}Store",
             initialState = ${NAME}Store.State,
+            #if (${CREATE_BOOTSTRAPPER} == "CUSTOM")
             bootstrapper = ${NAME}Bootstrapper(),
+            #elseif (${CREATE_BOOTSTRAPPER} == "SIMPLE")
+            bootstrapper = SimpleBootstrapper(Unit),
+            #end
             executorFactory = { ${NAME}Executor() },
             reducer = ${NAME}Reducer
         )

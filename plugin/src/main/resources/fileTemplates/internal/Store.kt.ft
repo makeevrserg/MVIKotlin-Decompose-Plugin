@@ -14,5 +14,7 @@ interface ${NAME}Store : Store<Intent, State, Label> {
 
     sealed interface Label
 
+    #if (${CREATE_BOOTSTRAPPER} == "CUSTOM")
     sealed interface Action
+    #end
 }

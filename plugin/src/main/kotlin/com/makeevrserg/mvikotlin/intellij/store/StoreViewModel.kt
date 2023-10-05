@@ -3,6 +3,7 @@ package com.makeevrserg.mvikotlin.intellij.store
 import com.intellij.psi.PsiDirectory
 import com.makeevrserg.mvikotlin.intellij.core.BaseViewModel
 import com.makeevrserg.mvikotlin.intellij.data.StorageApi
+import com.makeevrserg.mvikotlin.intellij.data.model.BottstrapperType
 import com.makeevrserg.mvikotlin.intellij.dependencies.ProjectDependencies
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -14,13 +15,15 @@ class StoreViewModel(
 ) : BaseViewModel() {
     val nameStorageValue = storageApi.createNameStorageValue()
     val useKlibsStorageValue = storageApi.useKlibsStorageValue
+    val createBootstrapperStorageValue = storageApi.createBootstrapperStorageValue
 
     val successFlow = MutableSharedFlow<Unit>()
 
     private fun createGenericTemplate(name: String) {
         val properties: MutableMap<String, Any> = mutableMapOf(
             nameStorageValue.asPair(),
-            useKlibsStorageValue.asPair()
+            useKlibsStorageValue.asPair(),
+            createBootstrapperStorageValue.asPair()
         )
         val fileApi = projectDependencies.generator.generateKt(
             name,
@@ -36,7 +39,9 @@ class StoreViewModel(
         createGenericTemplate("Reducer")
         createGenericTemplate("Executor")
         createGenericTemplate("StoreFactory")
-        createGenericTemplate("Bootstrapper")
+        if (createBootstrapperStorageValue.value == BottstrapperType.CUSTOM) {
+            createGenericTemplate("Bootstrapper")
+        }
     }
 
     fun onOkButtonClick() {
