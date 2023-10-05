@@ -1,8 +1,15 @@
 package ${PACKAGE_NAME}
 
 import kotlinx.coroutines.flow.StateFlow
+#if (${DECOMPOSE_MVI_INTEGRATION} == "true")
+import ${PACKAGE_NAME}.store.${NAME}Store.Label
+import kotlinx.coroutines.flow.Flow
+#end
 
 interface ${NAME}Component {
+    #if (${DECOMPOSE_MVI_INTEGRATION} == "true")
+    val labels: Flow<Label>
+    #end
     val model: StateFlow<Model>
 
     object Model

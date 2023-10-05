@@ -15,6 +15,13 @@ class StorageApiImpl(private val propertiesComponent: PropertiesComponent) : Sto
             default = false
         )
     }
+    override val decomposeMviIntegrationStorageValue: StorageValue<Boolean> by lazy {
+        BooleanStorageValue(
+            key = "DECOMPOSE_MVI_INTEGRATION",
+            properties = propertiesComponent,
+            default = false
+        )
+    }
     override val createBootstrapperStorageValue: StorageValue<BottstrapperType>
         get() = InMemoryStorageValue(
             key = "CREATE_BOOTSTRAPPER",

@@ -1,6 +1,7 @@
 package com.makeevrserg.mvikotlin.intellij.component
 
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.ui.dsl.builder.bindSelected
 import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
@@ -25,6 +26,13 @@ class ComponentDialog(
                 textField().focused().bindText(viewModel.nameStorageValue::value).horizontalAlign(
                     HorizontalAlign.FILL
                 )
+            }
+            group("Options") {
+                row {
+                    checkBox("MVIKotlin integration")
+                        .bindSelected(viewModel.decomposeMviIntegration::value)
+                }
+                row { comment("Store will be also created with this enabled") }
             }
             row { comment("Creates a new Decompose Component and it's default implementation") }
         }

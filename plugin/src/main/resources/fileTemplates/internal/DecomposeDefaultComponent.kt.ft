@@ -3,7 +3,21 @@ package ${PACKAGE_NAME}
 import com.arkivanov.decompose.ComponentContext
 import kotlinx.coroutines.flow.StateFlow
 import ${PACKAGE_NAME}.${NAME}Component.Model
+#if (${DECOMPOSE_MVI_INTEGRATION} == "true")
+import ${PACKAGE_NAME}.store.${NAME}Store.Label
+import ${PACKAGE_NAME}.store.${NAME}StoreFactory
+import com.arkivanov.mvikotlin.extensions.coroutines.labels
+import kotlinx.coroutines.flow.Flow
+import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
+import com.arkivanov.mvikotlin.core.instancekeeper.getStore
+#end
 
 class Default${NAME}Component(componentContext: ComponentContext): ${NAME}Component, ComponentContext by componentContext {
+    #if (${DECOMPOSE_MVI_INTEGRATION} == "true")
+    private val store = instanceKeeper.getStore {
+        ${NAME}StoreFactory(DefaultStoreFactory()).create()
+    }
+    override val labels: Flow<Label> = store.labels
+    #end
     override val model: StateFlow<Model> = TODO()
 }

@@ -5,6 +5,7 @@ import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
 
 interface StorageApi {
     val useKlibsStorageValue: StorageValue<Boolean>
+    val decomposeMviIntegrationStorageValue: StorageValue<Boolean>
     val createBootstrapperStorageValue: StorageValue<BottstrapperType>
     fun createNameStorageValue(): StorageValue<String>
 }
