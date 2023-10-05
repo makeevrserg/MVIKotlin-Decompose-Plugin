@@ -1,6 +1,7 @@
 package com.makeevrserg.mvikotlin.intellij.store
 
 import com.intellij.psi.PsiDirectory
+import com.intellij.util.application
 import com.makeevrserg.mvikotlin.intellij.core.BaseViewModel
 import com.makeevrserg.mvikotlin.intellij.data.StorageApi
 import com.makeevrserg.mvikotlin.intellij.data.model.BottstrapperType
@@ -20,6 +21,15 @@ class StoreViewModel(
 
     val successFlow = MutableSharedFlow<Unit>()
 
+    private fun createOrGetStoreDirectory(): PsiDirectory {
+        if (!createPackageStorageValue.value) return directory
+        val foundStoreDirectory = directory.findSubdirectory("store")
+        if (foundStoreDirectory != null) return foundStoreDirectory
+        return application.runWriteAction<PsiDirectory> {
+            directory.createSubdirectory("store")
+        }
+    }
+
     private fun createGenericTemplate(name: String) {
         val properties: MutableMap<String, Any> = mutableMapOf(
             nameStorageValue.asPair(),
@@ -27,9 +37,7 @@ class StoreViewModel(
             createBootstrapperStorageValue.asPair()
         )
 
-        val directory = directory.takeIf { !createPackageStorageValue.value } ?: let {
-            directory.findSubdirectory("store") ?: directory.createSubdirectory("store")
-        }
+        val directory = createOrGetStoreDirectory()
         val fileApi = projectDependencies.generator.generateKt(
             templateName = name,
             fileName = "${nameStorageValue.value}$name",
