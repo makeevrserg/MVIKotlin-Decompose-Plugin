@@ -1,3 +1,21 @@
+<style>
+details{
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 6px;
+    background: #161B22;
+    transition: all;
+}
+summary{
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+.content{
+    padding: 10px 10px;
+    background: #161B22;
+}
+</style>
+
 ## MVIKotlin-Decompose-Plugin
 
 MVIKotlin-Decompose-Plugin will help you to create Decompose components and MVIKotlin stores without wasting too much
@@ -5,9 +23,43 @@ time
 
 ### Decompose/MVIKotlin template
 
-Right clicking on package will show additional dialog, with which you will be able to create Component or Store
+Right-clicking on package will show additional dialog, with which you will be able to create Component or Store
 
-![](/assets/sample.png)
+### Menu overview
+
+<details>
+  <summary><b>(Click to expand)</b> Creation menu</summary>
+    <div class="content">
+        <img src="./assets/sample.png"/>
+    </div>
+</details>
+
+### Create Decompose component
+
+Here you can also make few configurations:
+
+- [x] Choose an option to enable MVIKotlin integration, which will add store creation
+
+<details>
+  <summary><b>(Click to expand)</b> Decompose menu</summary>
+    <div class="content">
+        <img src="./assets/decompose_menu.png"/>
+    </div>
+</details>
+
+### Create MVIKotlin store
+
+Here you can also make few configurations:
+
+- [x] Choose aBootstrapper type
+- [x] Option to use klibs.kdi Factory
+
+<details>
+  <summary><b>(Click to expand)</b> MVIKotlin menu</summary>
+    <div class="content">
+        <img src="./assets/mvi_menu.png"/>
+    </div>
+</details>
 
 ### See libraries
 
