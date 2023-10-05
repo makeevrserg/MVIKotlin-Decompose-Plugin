@@ -17,28 +17,14 @@ class ComponentViewModel(
 
     val successFlow = MutableSharedFlow<Unit>()
 
-    private fun createApiComponent() {
+    private fun createGenericTemplate(templateName: String, fileName: String) {
         val properties: MutableMap<String, Any> = mutableMapOf(
             nameStorageValue.asPair(),
             decomposeMviIntegration.asPair()
         )
         val fileApi = projectDependencies.generator.generateKt(
-            "DecomposeComponent",
-            "${nameStorageValue.value}Component",
-            directory,
-            properties
-        )
-        projectDependencies.editor.openFile(fileApi.virtualFile, true)
-    }
-
-    private fun createDefaultComponent() {
-        val properties: MutableMap<String, Any> = mutableMapOf(
-            nameStorageValue.asPair(),
-            decomposeMviIntegration.asPair()
-        )
-        val fileApi = projectDependencies.generator.generateKt(
-            "DecomposeDefaultComponent",
-            "Default${nameStorageValue.value}Component",
+            templateName,
+            fileName,
             directory,
             properties
         )
@@ -46,8 +32,14 @@ class ComponentViewModel(
     }
 
     fun onOkButtonClick() {
-        createApiComponent()
-        createDefaultComponent()
+        createGenericTemplate(
+            templateName = "DecomposeDefaultComponent",
+            fileName = "Default${nameStorageValue.value}Component"
+        )
+        createGenericTemplate(
+            templateName = "DecomposeComponent",
+            fileName = "${nameStorageValue.value}Component"
+        )
         scope.launch { successFlow.emit(Unit) }
     }
 }
