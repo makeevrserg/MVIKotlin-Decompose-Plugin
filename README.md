@@ -32,7 +32,7 @@ Right-clicking on package will show additional dialog, with which you will be ab
 
 ### Menu overview
 
-<details>
+<details open>
   <summary><b>(Click to expand)</b> Creation menu</summary>
     <div class="content">
         <img src="./assets/sample.png"/>
@@ -50,7 +50,7 @@ This configuration will create following:
 - `[Feat]Component` - Decompose interface component with Model
 - `Default[Feat]Component` - Default component implementation with ComponentContext
 
-<details>
+<details open>
   <summary><b>(Click to expand)</b> Decompose menu</summary>
     <div class="content">
         <img src="./assets/decompose_menu.jpg"/>
@@ -73,7 +73,7 @@ This configuration will create following:
 - `[Feat]StoreFactory` - Store factory with private inner implementation
 - `[Feat]Bootstrapper` - Store Bootstrapper if Custom bootstrapper option was selected
 
-<details>
+<details open>
   <summary><b>(Click to expand)</b> MVIKotlin menu</summary>
     <div class="content">
         <img src="./assets/mvi_menu.jpg"/>
