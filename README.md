@@ -1,21 +1,3 @@
-<style>
-details{
-    margin: 10px 0;
-    cursor: pointer;
-    border-radius: 6px;
-    background: #161B22;
-    transition: all;
-}
-summary{
-    padding: 5px 10px;
-    border-radius: 6px;
-}
-.content{
-    padding: 10px 10px;
-    background: #161B22;
-}
-</style>
-
 ## MVIKotlin-Decompose-Plugin
 
 MVIKotlin-Decompose-Plugin will help you to create Decompose components and MVIKotlin stores without wasting too much
