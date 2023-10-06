@@ -1,7 +1,7 @@
 package com.makeevrserg.mvikotlin.intellij.core
 
 import com.makeevrserg.mvikotlin.intellij.dependencies.Dependencies
-
+@Suppress("MaxLineLength")
 /**
  * Author
  *

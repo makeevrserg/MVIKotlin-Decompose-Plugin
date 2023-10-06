@@ -4,7 +4,7 @@ import com.intellij.openapi.ui.DialogPanel
 import com.intellij.openapi.ui.DialogWrapper
 import com.makeevrserg.mvikotlin.intellij.dependencies.Dependencies
 import javax.swing.JComponent
-
+@Suppress("MaxLineLength")
 /**
  * Author
  *

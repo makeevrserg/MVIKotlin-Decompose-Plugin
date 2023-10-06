@@ -13,16 +13,26 @@ class StoreViewModel(
     storageApi: StorageApi,
     private val directory: PsiDirectory,
     private val projectDependencies: ProjectDependencies
-) : BaseViewModel() {
-    val nameStorageValue = storageApi.createNameStorageValue()
-    val createPackageStorageValue = storageApi.createStorePackageStorageValue
-    val useKlibsStorageValue = storageApi.useKlibsStorageValue
-    val createBootstrapperStorageValue = storageApi.createBootstrapperStorageValue
+) : BaseViewModel(), StoreContract {
 
-    val successFlow = MutableSharedFlow<Unit>()
+    override val model: StoreContract.Model = StoreContract.Model(
+        name = storageApi.createNameStorageValue(),
+        useCreatePackage = storageApi.createStorePackageStorageValue,
+        useKlibs = storageApi.useKlibsStorageValue,
+        bootstrapperType = storageApi.createBootstrapperStorageValue
+    )
+
+    override val successFlow = MutableSharedFlow<Unit>()
+
+    private val properties: MutableMap<String, Any>
+        get() = mutableMapOf(
+            model.name.asPair(),
+            model.useKlibs.asPair(),
+            model.bootstrapperType.asPair()
+        )
 
     private fun createOrGetStoreDirectory(): PsiDirectory {
-        if (!createPackageStorageValue.value) return directory
+        if (!model.useCreatePackage.value) return directory
         val foundStoreDirectory = directory.findSubdirectory("store")
         if (foundStoreDirectory != null) return foundStoreDirectory
         return application.runWriteAction<PsiDirectory> {
@@ -30,17 +40,11 @@ class StoreViewModel(
         }
     }
 
-    private fun createGenericTemplate(name: String) {
-        val properties: MutableMap<String, Any> = mutableMapOf(
-            nameStorageValue.asPair(),
-            useKlibsStorageValue.asPair(),
-            createBootstrapperStorageValue.asPair()
-        )
-
+    private fun createGenericTemplate(templateName: String) {
         val directory = createOrGetStoreDirectory()
         val fileApi = projectDependencies.generator.generateKt(
-            templateName = name,
-            fileName = "${nameStorageValue.value}$name",
+            templateName = templateName,
+            fileName = "${model.name.value}$templateName",
             directory = directory,
             properties = properties
         )
@@ -52,12 +56,12 @@ class StoreViewModel(
         createGenericTemplate("Reducer")
         createGenericTemplate("Executor")
         createGenericTemplate("StoreFactory")
-        if (createBootstrapperStorageValue.value == BottstrapperType.CUSTOM) {
+        if (model.bootstrapperType.value == BottstrapperType.CUSTOM) {
             createGenericTemplate("Bootstrapper")
         }
     }
 
-    fun onOkButtonClick() {
+    override fun onFinished() {
         createStoreComponents()
         scope.launch { successFlow.emit(Unit) }
     }

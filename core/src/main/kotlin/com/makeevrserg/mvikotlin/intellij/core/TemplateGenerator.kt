@@ -7,12 +7,12 @@ import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import java.util.*
-
 /**
  * Author
  *
  * @see <a href="https://github.com/levinzonr/jetpack-compose-ui-arch-plugin">levinzonr/jetpack-compose-ui-arch-plugin</a>
  */
+@Suppress("MaxLineLength")
 class TemplateGenerator(private val project: Project) {
 
     fun generateKt(

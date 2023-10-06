@@ -6,12 +6,12 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.project.Project
 import com.makeevrserg.mvikotlin.intellij.core.TemplateGenerator
-
 /**
  * Author
  *
  * @see <a href="https://github.com/levinzonr/jetpack-compose-ui-arch-plugin">levinzonr/jetpack-compose-ui-arch-plugin</a>
  */
+@Suppress("MaxLineLength")
 class ProjectDependencies(val project: Project?) {
     val generator = TemplateGenerator(project!!)
     val editor: FileEditorManager = FileEditorManager.getInstance(project!!)

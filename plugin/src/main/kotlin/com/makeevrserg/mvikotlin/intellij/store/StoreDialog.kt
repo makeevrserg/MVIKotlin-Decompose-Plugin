@@ -1,6 +1,7 @@
 package com.makeevrserg.mvikotlin.intellij.store
 
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.bind
 import com.intellij.ui.dsl.builder.bindSelected
 import com.intellij.ui.dsl.builder.bindText
@@ -12,59 +13,67 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class StoreDialog(
-    private val viewModel: StoreViewModel
+    private val contract: StoreContract
 ) : BaseDialog() {
     init {
         init()
-        viewModel.successFlow
+        contract.successFlow
             .onEach { close(0) }
             .launchIn(dialogScope)
+    }
+
+    private fun Panel.createBootstrapperGroup() {
+        buttonsGroup("Bootstrapper") {
+            row {
+                radioButton(
+                    "No Bootstrapper",
+                    BottstrapperType.NONE
+                )
+            }
+            row {
+                radioButton(
+                    "Create custom Bootstrapper",
+                    BottstrapperType.CUSTOM
+                )
+            }
+            row {
+                radioButton(
+                    "Create simple Bootstrapper",
+                    BottstrapperType.SIMPLE
+                )
+            }
+        }.bind(contract.model.bootstrapperType::value)
+    }
+
+    private fun Panel.createOptionsGroup() {
+        group("Options") {
+            row {
+                checkBox("Use klibs factory")
+                    .bindSelected(contract.model.useKlibs::value)
+            }
+            row {
+                checkBox("Create store package")
+                    .bindSelected(contract.model.useCreatePackage::value)
+            }
+        }
     }
 
     override fun createPanel(): DialogPanel {
         return panel {
             row { label("New MVI store") }
             row {
-                textField().focused().bindText(viewModel.nameStorageValue::value).horizontalAlign(
+                textField().focused().bindText(contract.model.name::value).horizontalAlign(
                     HorizontalAlign.FILL
                 )
             }
             row { comment("Creates a new MVI store with factory, reducer, executor") }
-            group("Options") {
-                row {
-                    checkBox("Use klibs factory")
-                        .bindSelected(viewModel.useKlibsStorageValue::value)
-                }
-                row {
-                    checkBox("Create store package")
-                        .bindSelected(viewModel.createPackageStorageValue::value)
-                }
-            }
-            buttonsGroup("Bootstrapper") {
-                row {
-                    radioButton(
-                        "No Bootstrapper",
-                        BottstrapperType.NONE
-                    )
-                }
-                row {
-                    radioButton(
-                        "Create custom Bootstrapper",
-                        BottstrapperType.CUSTOM
-                    )
-                }
-                row {
-                    radioButton(
-                        "Create simple Bootstrapper",
-                        BottstrapperType.SIMPLE
-                    )
-                }
-            }.bind(viewModel.createBootstrapperStorageValue::value)
+            createOptionsGroup()
+            createBootstrapperGroup()
         }
     }
 
     override fun doOKAction() {
         panel.apply()
-        viewModel.onOkButtonClick()
+        contract.onFinished()
     }
 }
