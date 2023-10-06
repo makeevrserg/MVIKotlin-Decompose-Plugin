@@ -10,11 +10,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class ComponentDialog(
-    private val viewModel: ComponentViewModel
+    private val contract: ComponentContract
 ) : BaseDialog() {
     init {
         init()
-        viewModel.successFlow
+        contract.successFlow
             .onEach { close(0) }
             .launchIn(dialogScope)
     }
@@ -23,14 +23,14 @@ class ComponentDialog(
         return panel {
             row { label("New Decompose Component") }
             row {
-                textField().focused().bindText(viewModel.nameStorageValue::value).horizontalAlign(
+                textField().focused().bindText(contract.model.name::value).horizontalAlign(
                     HorizontalAlign.FILL
                 )
             }
             group("Options") {
                 row {
                     checkBox("MVIKotlin integration")
-                        .bindSelected(viewModel.decomposeMviIntegration::value)
+                        .bindSelected(contract.model.enableMviIntegration::value)
                 }
                 row { comment("Store will be also created with this enabled") }
             }
@@ -40,6 +40,6 @@ class ComponentDialog(
 
     override fun doOKAction() {
         panel.apply()
-        viewModel.onOkButtonClick()
+        contract.onFinished()
     }
 }

@@ -11,17 +11,20 @@ class ComponentViewModel(
     storageApi: StorageApi,
     private val directory: PsiDirectory,
     private val projectDependencies: ProjectDependencies
-) : BaseViewModel() {
-    val nameStorageValue = storageApi.createNameStorageValue()
-    val decomposeMviIntegration = storageApi.decomposeMviIntegrationStorageValue
+) : BaseViewModel(), ComponentContract {
+    override val model: ComponentContract.Model = ComponentContract.Model(
+        name = storageApi.createNameStorageValue(),
+        enableMviIntegration = storageApi.decomposeMviIntegrationStorageValue
+    )
+    override val successFlow = MutableSharedFlow<Unit>()
 
-    val successFlow = MutableSharedFlow<Unit>()
+    private val properties: MutableMap<String, Any>
+        get() = mutableMapOf(
+            model.name.asPair(),
+            model.enableMviIntegration.asPair()
+        )
 
     private fun createGenericTemplate(templateName: String, fileName: String) {
-        val properties: MutableMap<String, Any> = mutableMapOf(
-            nameStorageValue.asPair(),
-            decomposeMviIntegration.asPair()
-        )
         val fileApi = projectDependencies.generator.generateKt(
             templateName,
             fileName,
@@ -31,14 +34,14 @@ class ComponentViewModel(
         projectDependencies.editor.openFile(fileApi.virtualFile, true)
     }
 
-    fun onOkButtonClick() {
+    override fun onFinished() {
         createGenericTemplate(
             templateName = "DecomposeDefaultComponent",
-            fileName = "Default${nameStorageValue.value}Component"
+            fileName = "Default${model.name.value}Component"
         )
         createGenericTemplate(
             templateName = "DecomposeComponent",
-            fileName = "${nameStorageValue.value}Component"
+            fileName = "${model.name.value}Component"
         )
         scope.launch { successFlow.emit(Unit) }
     }
