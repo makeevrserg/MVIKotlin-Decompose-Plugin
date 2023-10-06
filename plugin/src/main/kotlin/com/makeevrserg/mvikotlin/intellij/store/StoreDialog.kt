@@ -1,5 +1,6 @@
 package com.makeevrserg.mvikotlin.intellij.store
 
+import com.intellij.ide.BrowserUtil
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.dsl.builder.Panel
 import com.intellij.ui.dsl.builder.bind
@@ -8,6 +9,7 @@ import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import com.makeevrserg.mvikotlin.intellij.core.BaseDialog
+import com.makeevrserg.mvikotlin.intellij.core.Constant
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -55,6 +57,19 @@ class StoreDialog(
         }
     }
 
+    private fun Panel.createLinkGroup() {
+        group("MVIKotlin") {
+            row {
+                link("\uD83D\uDE80 GitHub repo") {
+                    BrowserUtil.open(Constant.MVIKOTLIN_GIT)
+                }
+                link("\uD83D\uDC40 See docs") {
+                    BrowserUtil.open(Constant.MVIKOTLIN_DOCS)
+                }
+            }
+        }
+    }
+
     override fun createPanel(): DialogPanel {
         return panel {
             row { label("New MVI store") }
@@ -66,6 +81,7 @@ class StoreDialog(
             row { comment("Creates a new MVI store with factory, reducer, executor") }
             createOptionsGroup()
             createBootstrapperGroup()
+            createLinkGroup()
         }
     }
 
