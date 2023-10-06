@@ -4,7 +4,7 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.util.application
 import com.makeevrserg.mvikotlin.intellij.core.BaseViewModel
 import com.makeevrserg.mvikotlin.intellij.data.StorageApi
-import com.makeevrserg.mvikotlin.intellij.data.model.BottstrapperType
+import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import com.makeevrserg.mvikotlin.intellij.dependencies.ProjectDependencies
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
@@ -56,7 +56,7 @@ class StoreViewModel(
         createGenericTemplate("Reducer")
         createGenericTemplate("Executor")
         createGenericTemplate("StoreFactory")
-        if (model.bootstrapperType.value == BottstrapperType.CUSTOM) {
+        if (model.bootstrapperType.value == BootstrapperType.CUSTOM) {
             createGenericTemplate("Bootstrapper")
         }
     }

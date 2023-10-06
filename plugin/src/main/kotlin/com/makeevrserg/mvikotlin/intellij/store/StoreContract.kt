@@ -1,6 +1,6 @@
 package com.makeevrserg.mvikotlin.intellij.store
 
-import com.makeevrserg.mvikotlin.intellij.data.model.BottstrapperType
+import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
 import kotlinx.coroutines.flow.Flow
 
@@ -15,6 +15,6 @@ interface StoreContract {
         val name: StorageValue<String>,
         val useCreatePackage: StorageValue<Boolean>,
         val useKlibs: StorageValue<Boolean>,
-        val bootstrapperType: StorageValue<BottstrapperType>
+        val bootstrapperType: StorageValue<BootstrapperType>
     )
 }

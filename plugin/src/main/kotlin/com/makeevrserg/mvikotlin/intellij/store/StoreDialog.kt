@@ -8,7 +8,7 @@ import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import com.makeevrserg.mvikotlin.intellij.core.BaseDialog
-import com.makeevrserg.mvikotlin.intellij.data.model.BottstrapperType
+import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -22,25 +22,22 @@ class StoreDialog(
             .launchIn(dialogScope)
     }
 
+    private val BootstrapperType.translation: String
+        get() = when (this) {
+            BootstrapperType.NONE -> "No Bootstrapper"
+            BootstrapperType.SIMPLE -> "Create simple Bootstrapper"
+            BootstrapperType.CUSTOM -> "Create custom Bootstrapper"
+        }
+
     private fun Panel.createBootstrapperGroup() {
         buttonsGroup("Bootstrapper") {
-            row {
-                radioButton(
-                    "No Bootstrapper",
-                    BottstrapperType.NONE
-                )
-            }
-            row {
-                radioButton(
-                    "Create custom Bootstrapper",
-                    BottstrapperType.CUSTOM
-                )
-            }
-            row {
-                radioButton(
-                    "Create simple Bootstrapper",
-                    BottstrapperType.SIMPLE
-                )
+            BootstrapperType.values().forEach { bootstrapperType ->
+                row {
+                    radioButton(
+                        text = bootstrapperType.translation,
+                        value = bootstrapperType
+                    )
+                }
             }
         }.bind(contract.model.bootstrapperType::value)
     }
@@ -62,9 +59,9 @@ class StoreDialog(
         return panel {
             row { label("New MVI store") }
             row {
-                textField().focused().bindText(contract.model.name::value).horizontalAlign(
-                    HorizontalAlign.FILL
-                )
+                textField().focused()
+                    .bindText(contract.model.name::value)
+                    .horizontalAlign(HorizontalAlign.FILL)
             }
             row { comment("Creates a new MVI store with factory, reducer, executor") }
             createOptionsGroup()

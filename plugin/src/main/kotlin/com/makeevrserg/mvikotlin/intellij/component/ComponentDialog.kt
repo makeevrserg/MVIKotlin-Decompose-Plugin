@@ -23,9 +23,9 @@ class ComponentDialog(
         return panel {
             row { label("New Decompose Component") }
             row {
-                textField().focused().bindText(contract.model.name::value).horizontalAlign(
-                    HorizontalAlign.FILL
-                )
+                textField().focused()
+                    .bindText(contract.model.name::value)
+                    .horizontalAlign(HorizontalAlign.FILL)
             }
             group("Options") {
                 row {
