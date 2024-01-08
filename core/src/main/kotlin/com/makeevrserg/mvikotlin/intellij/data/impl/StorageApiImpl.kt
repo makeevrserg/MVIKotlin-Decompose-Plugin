@@ -3,6 +3,7 @@ package com.makeevrserg.mvikotlin.intellij.data.impl
 import com.intellij.ide.util.PropertiesComponent
 import com.makeevrserg.mvikotlin.intellij.data.StorageApi
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
+import com.makeevrserg.mvikotlin.intellij.data.model.ComponentChildType
 import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
 import com.makeevrserg.mvikotlin.intellij.storage.impl.BooleanStorageValue
 import com.makeevrserg.mvikotlin.intellij.storage.impl.InMemoryStorageValue
@@ -33,6 +34,11 @@ class StorageApiImpl(private val propertiesComponent: PropertiesComponent) : Sto
         get() = InMemoryStorageValue(
             key = "CREATE_BOOTSTRAPPER",
             initial = BootstrapperType.NONE
+        )
+    override val componentChildTypeStorageValue: StorageValue<ComponentChildType>
+        get() = InMemoryStorageValue(
+            key = "COMPONENT_CHILD_TYPE",
+            initial = ComponentChildType.NONE
         )
 
     override fun createNameStorageValue(): StorageValue<String> = InMemoryStorageValue(
