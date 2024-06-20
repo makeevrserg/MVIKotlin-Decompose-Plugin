@@ -1,3 +1,5 @@
+import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+
 plugins {
     id("java")
     alias(libs.plugins.kotlin.jvm)
@@ -16,6 +18,7 @@ dependencies {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
+    pluginName = projectInfo.name
     version.set("2023.2.7")
     type.set("IC") // Target IDE Platform
 
