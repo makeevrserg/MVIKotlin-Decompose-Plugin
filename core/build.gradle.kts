@@ -6,6 +6,8 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven("https://www.jetbrains.com/intellij-repository/releases")
+    maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
 }
 
 dependencies {
@@ -13,6 +15,6 @@ dependencies {
 }
 
 intellij {
-    version.set("2022.2.5")
+    version.set("2023.2.7")
     type.set("IC")
 }
