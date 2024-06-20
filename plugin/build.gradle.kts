@@ -5,6 +5,8 @@ plugins {
 }
 repositories {
     mavenCentral()
+    maven("https://www.jetbrains.com/intellij-repository/releases")
+    maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
 }
 dependencies {
     implementation(libs.kotlin.coroutines.swing)
@@ -14,7 +16,7 @@ dependencies {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2022.3.3")
+    version.set("2023.2.7")
     type.set("IC") // Target IDE Platform
 
     plugins.set(listOf(/* Plugin Dependencies */))
@@ -30,8 +32,8 @@ tasks {
     }
 
     patchPluginXml {
-        sinceBuild.set("223")
-        untilBuild.set("233.*")
+        sinceBuild.set("232")
+        untilBuild.set("242.*")
     }
 
     signPlugin {
