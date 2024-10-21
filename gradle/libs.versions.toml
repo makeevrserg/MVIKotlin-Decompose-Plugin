@@ -1,7 +1,7 @@
 [versions]
 # Kotlin
 kotlin-version = "2.0.0" # https://github.com/JetBrains/kotlin
-kotlin-coroutines = "1.9.0-RC" # https://github.com/Kotlin/kotlinx.coroutines
+kotlin-coroutines = "1.9.0" # https://github.com/Kotlin/kotlinx.coroutines
 jetbrains-intellij = "1.17.4" # https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#ide-configuration
 
 [libraries]
