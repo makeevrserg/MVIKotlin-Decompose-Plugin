@@ -1,3 +1,6 @@
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.gradleProperty
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireString
+
 plugins {
     id("java")
     alias(libs.plugins.kotlin.jvm)
@@ -6,8 +9,6 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven("https://www.jetbrains.com/intellij-repository/releases")
-    maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
 }
 
 dependencies {
@@ -15,6 +16,6 @@ dependencies {
 }
 
 intellij {
-    version.set("2023.2.7")
-    type.set("IC")
+    version.set(gradleProperty("intellij.version").requireString)
+    type.set(gradleProperty("intellij.type").requireString)
 }
