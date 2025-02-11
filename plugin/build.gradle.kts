@@ -1,5 +1,4 @@
 import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.gradleProperty
-import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.secretProperty
 import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
 import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireString
 
