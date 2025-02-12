@@ -1,42 +1,32 @@
-import ru.astrainteractive.gradleplugin.util.ProjectProperties.projectInfo
+import ru.astrainteractive.gradleplugin.property.PropertyValue.Companion.gradleProperty
+import ru.astrainteractive.gradleplugin.property.extension.ModelPropertyValueExt.requireProjectInfo
+import ru.astrainteractive.gradleplugin.property.extension.PrimitivePropertyValueExt.requireString
 
 plugins {
     id("java")
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.intellij)
 }
+
 repositories {
     mavenCentral()
-    maven("https://www.jetbrains.com/intellij-repository/releases")
-    maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
 }
+
 dependencies {
     implementation(libs.kotlin.coroutines.swing)
     implementation(project(":core"))
 }
 
-// Configure Gradle IntelliJ Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    pluginName = projectInfo.name
-    version.set("2023.2.7")
-    type.set("IC") // Target IDE Platform
-
-    plugins.set(listOf(/* Plugin Dependencies */))
+    pluginName = requireProjectInfo.name
+    version.set(gradleProperty("intellij.version").requireString)
+    type.set(gradleProperty("intellij.type").requireString)
 }
-tasks {
-    // Set the JVM compatibility versions
-    withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
-    }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-    }
 
+tasks {
     patchPluginXml {
-        sinceBuild.set("232")
-        untilBuild.set("242.*")
+        sinceBuild.set("223")
+        untilBuild.set("251.*")
     }
 
     signPlugin {
