@@ -25,8 +25,8 @@ intellij {
 
 tasks {
     patchPluginXml {
-        sinceBuild.set("232")
-        untilBuild.set("242.*")
+        sinceBuild.set("223")
+        untilBuild.set("251.*")
     }
 
     signPlugin {

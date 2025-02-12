@@ -1,5 +1,6 @@
 .gradle
 .idea
+.kotlin
 local.properties
 build/
 !gradle/wrapper/gradle-wrapper.jar
