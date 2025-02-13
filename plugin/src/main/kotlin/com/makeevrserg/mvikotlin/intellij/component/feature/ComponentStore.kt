@@ -1,9 +1,9 @@
-package com.makeevrserg.mvikotlin.intellij.component
+package com.makeevrserg.mvikotlin.intellij.component.feature
 
 import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
 import kotlinx.coroutines.flow.Flow
 
-interface ComponentContract {
+interface ComponentStore {
     val model: Model
 
     val successFlow: Flow<Unit>

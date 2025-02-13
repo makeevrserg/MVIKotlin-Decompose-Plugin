@@ -1,10 +1,10 @@
-package com.makeevrserg.mvikotlin.intellij.store
+package com.makeevrserg.mvikotlin.intellij.store.feature
 
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
 import kotlinx.coroutines.flow.Flow
 
-interface StoreContract {
+interface StoreStore {
     val model: Model
 
     val successFlow: Flow<Unit>

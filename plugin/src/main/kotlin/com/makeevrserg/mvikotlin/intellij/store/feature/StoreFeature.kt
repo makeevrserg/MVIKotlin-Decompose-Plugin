@@ -1,21 +1,21 @@
-package com.makeevrserg.mvikotlin.intellij.store
+package com.makeevrserg.mvikotlin.intellij.store.feature
 
 import com.intellij.psi.PsiDirectory
 import com.intellij.util.application
-import com.makeevrserg.mvikotlin.intellij.core.BaseViewModel
+import com.makeevrserg.mvikotlin.intellij.core.CoroutineFeature
 import com.makeevrserg.mvikotlin.intellij.data.StorageApi
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import com.makeevrserg.mvikotlin.intellij.dependencies.ProjectDependencies
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
-class StoreViewModel(
+class StoreFeature(
     storageApi: StorageApi,
     private val directory: PsiDirectory,
     private val projectDependencies: ProjectDependencies
-) : BaseViewModel(), StoreContract {
+) : CoroutineFeature by CoroutineFeature.Main(), StoreStore {
 
-    override val model: StoreContract.Model = StoreContract.Model(
+    override val model: StoreStore.Model = StoreStore.Model(
         name = storageApi.createNameStorageValue(),
         useCreatePackage = storageApi.createStorePackageStorageValue,
         useKlibs = storageApi.useKlibsStorageValue,
@@ -63,6 +63,6 @@ class StoreViewModel(
 
     override fun onFinished() {
         createStoreComponents()
-        scope.launch { successFlow.emit(Unit) }
+        launch { successFlow.emit(Unit) }
     }
 }

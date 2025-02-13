@@ -1,4 +1,4 @@
-package com.makeevrserg.mvikotlin.intellij.component
+package com.makeevrserg.mvikotlin.intellij.component.ui
 
 import com.intellij.ide.BrowserUtil
 import com.intellij.openapi.ui.DialogPanel
@@ -7,19 +7,21 @@ import com.intellij.ui.dsl.builder.bindSelected
 import com.intellij.ui.dsl.builder.bindText
 import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
+import com.makeevrserg.mvikotlin.intellij.component.feature.ComponentStore
 import com.makeevrserg.mvikotlin.intellij.core.BaseDialog
 import com.makeevrserg.mvikotlin.intellij.core.Constant
+import com.makeevrserg.mvikotlin.intellij.core.CoroutineFeature
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class ComponentDialog(
-    private val contract: ComponentContract
-) : BaseDialog() {
+    private val contract: ComponentStore
+) : BaseDialog(), CoroutineFeature by CoroutineFeature.Main() {
     init {
         init()
         contract.successFlow
             .onEach { close(0) }
-            .launchIn(dialogScope)
+            .launchIn(this)
     }
 
     private fun Panel.createLinkGroup() {

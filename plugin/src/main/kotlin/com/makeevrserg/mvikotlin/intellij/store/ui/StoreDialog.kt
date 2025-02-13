@@ -1,4 +1,4 @@
-package com.makeevrserg.mvikotlin.intellij.store
+package com.makeevrserg.mvikotlin.intellij.store.ui
 
 import com.intellij.ide.BrowserUtil
 import com.intellij.openapi.ui.DialogPanel
@@ -10,18 +10,20 @@ import com.intellij.ui.dsl.builder.panel
 import com.intellij.ui.dsl.gridLayout.HorizontalAlign
 import com.makeevrserg.mvikotlin.intellij.core.BaseDialog
 import com.makeevrserg.mvikotlin.intellij.core.Constant
+import com.makeevrserg.mvikotlin.intellij.core.CoroutineFeature
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
+import com.makeevrserg.mvikotlin.intellij.store.feature.StoreStore
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class StoreDialog(
-    private val contract: StoreContract
-) : BaseDialog() {
+    private val contract: StoreStore
+) : BaseDialog(), CoroutineFeature by CoroutineFeature.Main() {
     init {
         init()
         contract.successFlow
             .onEach { close(0) }
-            .launchIn(dialogScope)
+            .launchIn(this)
     }
 
     private val BootstrapperType.translation: String
