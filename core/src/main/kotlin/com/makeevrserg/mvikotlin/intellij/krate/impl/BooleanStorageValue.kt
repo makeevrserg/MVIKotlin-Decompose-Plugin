@@ -5,7 +5,7 @@ import com.makeevrserg.mvikotlin.intellij.krate.IntellijMutableKrate
 import ru.astrainteractive.klibs.kstorage.api.MutableKrate
 import ru.astrainteractive.klibs.kstorage.api.impl.DefaultMutableKrate
 
-class BooleanStorageValue(
+internal class BooleanStorageValue(
     override val key: String,
     private val properties: PropertiesComponent,
     private val default: Boolean

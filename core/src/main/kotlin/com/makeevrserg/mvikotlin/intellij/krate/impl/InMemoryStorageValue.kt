@@ -4,7 +4,7 @@ import com.makeevrserg.mvikotlin.intellij.krate.IntellijMutableKrate
 import ru.astrainteractive.klibs.kstorage.api.MutableKrate
 import ru.astrainteractive.klibs.kstorage.api.impl.DefaultMutableKrate
 
-fun <T> inMemoryStorageValue(
+internal fun <T> inMemoryStorageValue(
     key: String,
     default: T
 ): IntellijMutableKrate<T> {

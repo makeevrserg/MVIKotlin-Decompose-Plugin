@@ -6,7 +6,7 @@ import ru.astrainteractive.klibs.kstorage.api.MutableKrate
 import ru.astrainteractive.klibs.kstorage.api.impl.DefaultMutableKrate
 import kotlin.enums.EnumEntries
 
-class EnumStorageValue<T : Enum<T>>(
+internal class EnumStorageValue<T : Enum<T>>(
     override val key: String,
     private val properties: PropertiesComponent,
     initial: T,
