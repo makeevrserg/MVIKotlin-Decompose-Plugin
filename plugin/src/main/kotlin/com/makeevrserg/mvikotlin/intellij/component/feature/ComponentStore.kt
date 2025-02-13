@@ -1,6 +1,6 @@
 package com.makeevrserg.mvikotlin.intellij.component.feature
 
-import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
+import com.makeevrserg.mvikotlin.intellij.krate.IntellijMutableKrate
 import kotlinx.coroutines.flow.Flow
 
 interface ComponentStore {
@@ -11,7 +11,7 @@ interface ComponentStore {
     fun onFinished()
 
     class Model(
-        val name: StorageValue<String>,
-        val enableMviIntegration: StorageValue<Boolean>
+        val name: IntellijMutableKrate<String>,
+        val enableMviIntegration: IntellijMutableKrate<Boolean>
     )
 }

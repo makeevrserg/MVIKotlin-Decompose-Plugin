@@ -2,13 +2,13 @@ package com.makeevrserg.mvikotlin.intellij.data
 
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import com.makeevrserg.mvikotlin.intellij.data.model.ComponentChildType
-import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
+import com.makeevrserg.mvikotlin.intellij.krate.IntellijMutableKrate
 
 interface StorageApi {
-    val useKlibsStorageValue: StorageValue<Boolean>
-    val createStorePackageStorageValue: StorageValue<Boolean>
-    val decomposeMviIntegrationStorageValue: StorageValue<Boolean>
-    val createBootstrapperStorageValue: StorageValue<BootstrapperType>
-    val componentChildTypeStorageValue: StorageValue<ComponentChildType>
-    fun createNameStorageValue(): StorageValue<String>
+    val useKlibsStorageValue: IntellijMutableKrate<Boolean>
+    val createStorePackageStorageValue: IntellijMutableKrate<Boolean>
+    val decomposeMviIntegrationStorageValue: IntellijMutableKrate<Boolean>
+    val createBootstrapperStorageValue: IntellijMutableKrate<BootstrapperType>
+    val componentChildTypeStorageValue: IntellijMutableKrate<ComponentChildType>
+    fun createNameStorageValue(): IntellijMutableKrate<String>
 }

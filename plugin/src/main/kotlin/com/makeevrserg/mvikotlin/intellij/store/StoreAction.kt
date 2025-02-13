@@ -12,10 +12,11 @@ import com.makeevrserg.mvikotlin.intellij.store.ui.StoreDialog
 
 class StoreAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-        val directory = e.getData(CommonDataKeys.PSI_ELEMENT) as PsiDirectory
-        val properties: PropertiesComponent = PropertiesComponent.getInstance(e.project!!)
+        val project = e.project ?: return
+        val directory = e.getData(CommonDataKeys.PSI_ELEMENT) as? PsiDirectory ?: return
+        val properties: PropertiesComponent = PropertiesComponent.getInstance(project)
         val storageApi = StorageApiImpl(properties)
-        val viewModel = StoreFeature(storageApi, directory, ProjectDependencies(e.project))
+        val viewModel = StoreFeature(storageApi, directory, ProjectDependencies(project))
         StoreDialog(viewModel).show()
     }
 }

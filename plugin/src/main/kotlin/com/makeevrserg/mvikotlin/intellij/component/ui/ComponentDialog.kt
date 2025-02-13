@@ -16,12 +16,14 @@ import kotlinx.coroutines.flow.onEach
 
 class ComponentDialog(
     private val contract: ComponentStore
-) : BaseDialog(), CoroutineFeature by CoroutineFeature.Main() {
+) : BaseDialog() {
+    private val scope = CoroutineFeature.Main()
+
     init {
         init()
         contract.successFlow
             .onEach { close(0) }
-            .launchIn(this)
+            .launchIn(scope)
     }
 
     private fun Panel.createLinkGroup() {

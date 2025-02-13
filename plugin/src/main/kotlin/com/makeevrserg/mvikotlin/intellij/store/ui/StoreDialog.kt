@@ -18,12 +18,14 @@ import kotlinx.coroutines.flow.onEach
 
 class StoreDialog(
     private val contract: StoreStore
-) : BaseDialog(), CoroutineFeature by CoroutineFeature.Main() {
+) : BaseDialog() {
+    private val scope = CoroutineFeature.Main()
+
     init {
         init()
         contract.successFlow
             .onEach { close(0) }
-            .launchIn(this)
+            .launchIn(scope)
     }
 
     private val BootstrapperType.translation: String
@@ -35,7 +37,7 @@ class StoreDialog(
 
     private fun Panel.createBootstrapperGroup() {
         buttonsGroup("Bootstrapper") {
-            BootstrapperType.values().forEach { bootstrapperType ->
+            BootstrapperType.entries.forEach { bootstrapperType ->
                 row {
                     radioButton(
                         text = bootstrapperType.translation,

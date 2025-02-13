@@ -13,6 +13,8 @@ repositories {
 
 dependencies {
     implementation(libs.kotlin.coroutines.swing)
+    api(libs.klibs.kstorage)
+    api(libs.klibs.mikro.core)
 }
 
 intellij {

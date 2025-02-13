@@ -1,7 +1,7 @@
 package com.makeevrserg.mvikotlin.intellij.store.feature
 
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
-import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
+import com.makeevrserg.mvikotlin.intellij.krate.IntellijMutableKrate
 import kotlinx.coroutines.flow.Flow
 
 interface StoreStore {
@@ -12,9 +12,9 @@ interface StoreStore {
     fun onFinished()
 
     class Model(
-        val name: StorageValue<String>,
-        val useCreatePackage: StorageValue<Boolean>,
-        val useKlibs: StorageValue<Boolean>,
-        val bootstrapperType: StorageValue<BootstrapperType>
+        val name: IntellijMutableKrate<String>,
+        val useCreatePackage: IntellijMutableKrate<Boolean>,
+        val useKlibs: IntellijMutableKrate<Boolean>,
+        val bootstrapperType: IntellijMutableKrate<BootstrapperType>
     )
 }
