@@ -1,18 +1,18 @@
-package com.makeevrserg.mvikotlin.intellij.component
+package com.makeevrserg.mvikotlin.intellij.component.feature
 
 import com.intellij.psi.PsiDirectory
-import com.makeevrserg.mvikotlin.intellij.core.BaseViewModel
+import com.makeevrserg.mvikotlin.intellij.core.CoroutineFeature
 import com.makeevrserg.mvikotlin.intellij.data.StorageApi
 import com.makeevrserg.mvikotlin.intellij.dependencies.ProjectDependencies
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
-class ComponentViewModel(
+class ComponentFeature(
     storageApi: StorageApi,
     private val directory: PsiDirectory,
     private val projectDependencies: ProjectDependencies
-) : BaseViewModel(), ComponentContract {
-    override val model: ComponentContract.Model = ComponentContract.Model(
+) : CoroutineFeature by CoroutineFeature.Main(), ComponentStore {
+    override val model: ComponentStore.Model = ComponentStore.Model(
         name = storageApi.createNameStorageValue(),
         enableMviIntegration = storageApi.decomposeMviIntegrationStorageValue
     )
@@ -43,6 +43,6 @@ class ComponentViewModel(
             templateName = "DecomposeComponent",
             fileName = "${model.name.value}Component"
         )
-        scope.launch { successFlow.emit(Unit) }
+        launch { successFlow.emit(Unit) }
     }
 }

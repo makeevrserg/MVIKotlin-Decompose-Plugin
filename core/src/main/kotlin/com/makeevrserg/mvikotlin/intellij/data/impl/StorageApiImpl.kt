@@ -4,45 +4,50 @@ import com.intellij.ide.util.PropertiesComponent
 import com.makeevrserg.mvikotlin.intellij.data.StorageApi
 import com.makeevrserg.mvikotlin.intellij.data.model.BootstrapperType
 import com.makeevrserg.mvikotlin.intellij.data.model.ComponentChildType
-import com.makeevrserg.mvikotlin.intellij.storage.StorageValue
-import com.makeevrserg.mvikotlin.intellij.storage.impl.BooleanStorageValue
-import com.makeevrserg.mvikotlin.intellij.storage.impl.InMemoryStorageValue
+import com.makeevrserg.mvikotlin.intellij.krate.IntellijMutableKrate
+import com.makeevrserg.mvikotlin.intellij.krate.impl.BooleanStorageValue
+import com.makeevrserg.mvikotlin.intellij.krate.impl.EnumStorageValue
+import com.makeevrserg.mvikotlin.intellij.krate.impl.inMemoryStorageValue
 
 class StorageApiImpl(private val propertiesComponent: PropertiesComponent) : StorageApi {
-    override val useKlibsStorageValue: StorageValue<Boolean> by lazy {
+    override val useKlibsStorageValue: IntellijMutableKrate<Boolean> by lazy {
         BooleanStorageValue(
             key = "USE_KLIBS_FACTORY",
             properties = propertiesComponent,
             default = false
         )
     }
-    override val createStorePackageStorageValue: StorageValue<Boolean> by lazy {
+    override val createStorePackageStorageValue: IntellijMutableKrate<Boolean> by lazy {
         BooleanStorageValue(
             key = "CREATE_STORE_PACKAGE",
             properties = propertiesComponent,
             default = false
         )
     }
-    override val decomposeMviIntegrationStorageValue: StorageValue<Boolean> by lazy {
+    override val decomposeMviIntegrationStorageValue: IntellijMutableKrate<Boolean> by lazy {
         BooleanStorageValue(
             key = "DECOMPOSE_MVI_INTEGRATION",
             properties = propertiesComponent,
             default = false
         )
     }
-    override val createBootstrapperStorageValue: StorageValue<BootstrapperType>
-        get() = InMemoryStorageValue(
+    override val createBootstrapperStorageValue: IntellijMutableKrate<BootstrapperType>
+        get() = EnumStorageValue(
             key = "CREATE_BOOTSTRAPPER",
-            initial = BootstrapperType.NONE
+            initial = BootstrapperType.NONE,
+            properties = propertiesComponent,
+            entries = BootstrapperType.entries
         )
-    override val componentChildTypeStorageValue: StorageValue<ComponentChildType>
-        get() = InMemoryStorageValue(
+    override val componentChildTypeStorageValue: IntellijMutableKrate<ComponentChildType>
+        get() = EnumStorageValue(
             key = "COMPONENT_CHILD_TYPE",
-            initial = ComponentChildType.NONE
+            initial = ComponentChildType.NONE,
+            properties = propertiesComponent,
+            entries = ComponentChildType.entries
         )
 
-    override fun createNameStorageValue(): StorageValue<String> = InMemoryStorageValue(
+    override fun createNameStorageValue(): IntellijMutableKrate<String> = inMemoryStorageValue(
         key = "NAME",
-        initial = ""
+        default = "",
     )
 }

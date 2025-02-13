@@ -5,9 +5,14 @@ kotlin-coroutines = "1.10.1" # https://github.com/Kotlin/kotlinx.coroutines
 jetbrains-intellij = "1.17.4" # https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#ide-configuration
 # klibs
 klibs-gradleplugin = "1.5.1" # https://github.com/makeevrserg/gradle-plugin
+klibs-kstorage = "3.2.6" # https://github.com/makeevrserg/klibs.kstorage
+klibs-mikro = "1.8.15" # https://github.com/makeevrserg/klibs.mikro
+
 [libraries]
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-version" }
 kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlin-coroutines" }
+klibs-kstorage = { module = "ru.astrainteractive.klibs:kstorage", version.ref = "klibs-kstorage" }
+klibs-mikro-core = { module = "ru.astrainteractive.klibs:mikro-core", version.ref = "klibs-mikro" }
 
 [plugins]
 # Kotlin
