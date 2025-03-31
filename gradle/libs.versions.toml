@@ -4,7 +4,7 @@ kotlin-version = "2.1.10" # https://github.com/JetBrains/kotlin
 kotlin-coroutines = "1.10.1" # https://github.com/Kotlin/kotlinx.coroutines
 jetbrains-intellij = "1.17.4" # https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#ide-configuration
 # klibs
-klibs-gradleplugin = "1.5.2" # https://github.com/makeevrserg/gradle-plugin
+klibs-gradleplugin = "1.6.0" # https://github.com/makeevrserg/gradle-plugin
 klibs-kstorage = "3.2.6" # https://github.com/makeevrserg/klibs.kstorage
 klibs-mikro = "1.8.15" # https://github.com/makeevrserg/klibs.mikro
 
