@@ -45,18 +45,18 @@ class StoreDialog(
                     )
                 }
             }
-        }.bind(contract.model.bootstrapperType::value)
+        }.bind(contract.model.bootstrapperType::kValue)
     }
 
     private fun Panel.createOptionsGroup() {
         group("Options") {
             row {
                 checkBox("Use klibs factory")
-                    .bindSelected(contract.model.useKlibs::value)
+                    .bindSelected(contract.model.useKlibs::kValue)
             }
             row {
                 checkBox("Create store package")
-                    .bindSelected(contract.model.useCreatePackage::value)
+                    .bindSelected(contract.model.useCreatePackage::kValue)
             }
         }
     }
@@ -79,7 +79,7 @@ class StoreDialog(
             row { label("New MVI store") }
             row {
                 textField().focused()
-                    .bindText(contract.model.name::value)
+                    .bindText(contract.model.name::kValue)
                     .horizontalAlign(HorizontalAlign.FILL)
             }
             row { comment("Creates a new MVI store with factory, reducer, executor") }
