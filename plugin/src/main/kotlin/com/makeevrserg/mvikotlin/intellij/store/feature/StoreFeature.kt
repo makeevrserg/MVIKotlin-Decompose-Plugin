@@ -32,7 +32,7 @@ class StoreFeature(
         )
 
     private fun createOrGetStoreDirectory(): PsiDirectory {
-        if (!model.useCreatePackage.value) return directory
+        if (!model.useCreatePackage.kValue) return directory
         val foundStoreDirectory = directory.findSubdirectory("store")
         if (foundStoreDirectory != null) return foundStoreDirectory
         return application.runWriteAction<PsiDirectory> {
@@ -44,7 +44,7 @@ class StoreFeature(
         val directory = createOrGetStoreDirectory()
         val fileApi = projectDependencies.generator.generateKt(
             templateName = templateName,
-            fileName = "${model.name.value}$templateName",
+            fileName = "${model.name.kValue}$templateName",
             directory = directory,
             properties = properties
         )
@@ -56,7 +56,7 @@ class StoreFeature(
         createGenericTemplate("Reducer")
         createGenericTemplate("Executor")
         createGenericTemplate("StoreFactory")
-        if (model.bootstrapperType.value == BootstrapperType.CUSTOM) {
+        if (model.bootstrapperType.kValue == BootstrapperType.CUSTOM) {
             createGenericTemplate("Bootstrapper")
         }
     }

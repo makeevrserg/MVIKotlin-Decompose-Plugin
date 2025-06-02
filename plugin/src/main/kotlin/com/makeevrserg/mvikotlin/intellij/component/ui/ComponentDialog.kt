@@ -43,7 +43,7 @@ class ComponentDialog(
         group("Options") {
             row {
                 checkBox("MVIKotlin integration")
-                    .bindSelected(contract.model.enableMviIntegration::value)
+                    .bindSelected(contract.model.enableMviIntegration::kValue)
             }
             row { comment("Store will be also created with this enabled") }
         }
@@ -54,7 +54,7 @@ class ComponentDialog(
             row { label("New Decompose Component") }
             row {
                 textField().focused()
-                    .bindText(contract.model.name::value)
+                    .bindText(contract.model.name::kValue)
                     .horizontalAlign(HorizontalAlign.FILL)
             }
             createOptionsGroup()

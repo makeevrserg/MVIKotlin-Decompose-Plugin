@@ -37,11 +37,11 @@ class ComponentFeature(
     override fun onFinished() {
         createGenericTemplate(
             templateName = "DecomposeDefaultComponent",
-            fileName = "Default${model.name.value}Component"
+            fileName = "Default${model.name.kValue}Component"
         )
         createGenericTemplate(
             templateName = "DecomposeComponent",
-            fileName = "${model.name.value}Component"
+            fileName = "${model.name.kValue}Component"
         )
         launch { successFlow.emit(Unit) }
     }
